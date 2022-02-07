@@ -13,4 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Lihat Data" />
+
+    <Button
+        android:id="@+id/btn_tambah_datah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TAMBAH DATA" />
 </LinearLayout>

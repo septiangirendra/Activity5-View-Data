@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Project005"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".TambahDataActivity"
+            android:exported="false" />
+        <activity
             android:name=".LihatDetailDataActivity"
             android:exported="false" />
         <activity
