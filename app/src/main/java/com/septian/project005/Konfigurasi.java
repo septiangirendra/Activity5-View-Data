@@ -5,7 +5,7 @@ public class Konfigurasi {
     public static final String URL_GET_DETAIL = "http://192.168.31.103/pegawai/tampilPgw.php?id=";
     public static final String URL_GET_ADD = "http://192.168.31.103/pegawai/tambahPgw.php";
     public static final String URL_UPDATE = "http://192.168.31.103/pegawai/updatePgw.php";
-    public static final String URL_DELETE = "http://192.168.31.103/pegawai/hapusPgw.php";
+    public static final String URL_DELETE = "http://192.168.31.103/pegawai/hapusPgw.php?id=";
 
     // key adn value JSON yang muncul di browser
     public static final String KEY_PGW_ID = "id";

@@ -15,6 +15,7 @@
         android:layout_margin="8dp"
         android:editable="false"
         android:ems="10"
+        android:enabled="false"
         android:textSize="24sp"
         android:textStyle="bold" />
 

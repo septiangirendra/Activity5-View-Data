@@ -1,9 +1,11 @@
 package com.septian.project005;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -127,6 +129,56 @@ public class LihatDetailDataActivity extends AppCompatActivity implements View.O
     }
 
     private void confirmDeleteDataPegawai() {
+        // Confirmation Alert Dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Menghapus Data");
+        builder.setMessage("Apakah anda yakin menghapus data ini?");
+        builder.setIcon(getResources().getDrawable(android.R.drawable.ic_delete));
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                deleteDataPegawai();
+                startActivity(new Intent(LihatDetailDataActivity.this, MainActivity.class));
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteDataPegawai() {
+        class DeleteEmployee extends AsyncTask<Void, Void, String>{
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LihatDetailDataActivity.this,
+                        "Menghapus", "Data",
+                        false, false);
+            }
+
+            @Override
+            protected String doInBackground(Void... voids) {
+                HttpHandler handler = new HttpHandler();
+                String s = handler.sendGetResponse(Konfigurasi.URL_DELETE, id);
+                return s;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(LihatDetailDataActivity.this, "Hapus" + s,
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        DeleteEmployee deleteEmployee = new DeleteEmployee();
+        deleteEmployee.execute();
+
     }
 
     private void updateDataPegawai() {
